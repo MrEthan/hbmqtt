@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>hbmqtt_pub &mdash; HBMQTT 0.6 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="hbmqtt_sub" href="hbmqtt_sub.html" />
+    <link rel="prev" title="References" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> HBMQTT
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">References</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#console-scripts">Console scripts</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#programming-api">Programming API</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">hbmqtt_pub</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#options">Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="hbmqtt_sub.html">hbmqtt_sub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hbmqtt.html">hbmqtt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mqttclient.html">MQTTClient API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="broker.html">Broker API reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html">Common API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">HBMQTT</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">References</a> &raquo;</li>
+        
+      <li>hbmqtt_pub</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/references/hbmqtt_pub.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hbmqtt-pub">
+<h1>hbmqtt_pub<a class="headerlink" href="#hbmqtt-pub" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">hbmqtt_pub</span></code> is a MQTT client that publishes simple messages on a topic from the command line.</p>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">hbmqtt_pub</span></code> usage :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hbmqtt_pub</span> <span class="o">--</span><span class="n">version</span>
+<span class="n">hbmqtt_pub</span> <span class="p">(</span><span class="o">-</span><span class="n">h</span> <span class="o">|</span> <span class="o">--</span><span class="n">help</span><span class="p">)</span>
+<span class="n">hbmqtt_pub</span> <span class="o">--</span><span class="n">url</span> <span class="n">BROKER_URL</span> <span class="o">-</span><span class="n">t</span> <span class="n">TOPIC</span> <span class="p">(</span><span class="o">-</span><span class="n">f</span> <span class="n">FILE</span> <span class="o">|</span> <span class="o">-</span><span class="n">l</span> <span class="o">|</span> <span class="o">-</span><span class="n">m</span> <span class="n">MESSAGE</span> <span class="o">|</span> <span class="o">-</span><span class="n">n</span> <span class="o">|</span> <span class="o">-</span><span class="n">s</span><span class="p">)</span> <span class="p">[</span><span class="o">-</span><span class="n">c</span> <span class="n">CONFIG_FILE</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">i</span> <span class="n">CLIENT_ID</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">d</span><span class="p">]</span>
+           <span class="p">[</span><span class="o">-</span><span class="n">q</span> <span class="o">|</span> <span class="o">--</span><span class="n">qos</span> <span class="n">QOS</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">d</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">k</span> <span class="n">KEEP_ALIVE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">clean</span><span class="o">-</span><span class="n">session</span><span class="p">]</span>
+           <span class="p">[</span><span class="o">--</span><span class="n">ca</span><span class="o">-</span><span class="n">file</span> <span class="n">CAFILE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">ca</span><span class="o">-</span><span class="n">path</span> <span class="n">CAPATH</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">ca</span><span class="o">-</span><span class="n">data</span> <span class="n">CADATA</span><span class="p">]</span>
+           <span class="p">[</span> <span class="o">--</span><span class="n">will</span><span class="o">-</span><span class="n">topic</span> <span class="n">WILL_TOPIC</span> <span class="p">[</span><span class="o">--</span><span class="n">will</span><span class="o">-</span><span class="n">message</span> <span class="n">WILL_MESSAGE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">will</span><span class="o">-</span><span class="n">qos</span> <span class="n">WILL_QOS</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">will</span><span class="o">-</span><span class="n">retain</span><span class="p">]</span> <span class="p">]</span>
+           <span class="p">[</span><span class="o">--</span><span class="n">extra</span><span class="o">-</span><span class="n">headers</span> <span class="n">HEADER</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Note that for simplicity, <code class="docutils literal notranslate"><span class="pre">hbmqtt_pub</span></code> uses mostly the same argument syntax as <a class="reference external" href="http://mosquitto.org/man/mosquitto_pub-1.html">mosquitto_pub</a>.</p>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">--version</span></kbd></td>
+<td>HBMQTT version information</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td>Display <code class="docutils literal notranslate"><span class="pre">hbmqtt_pub</span></code> usage help</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-c</span></kbd></td>
+<td>Set the YAML configuration file to read and pass to the client runtime.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-d</span></kbd></td>
+<td>Enable debugging informations.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--ca-file</span></kbd></td>
+<td>Define the path to a file containing PEM encoded CA certificates that are trusted. Used to enable SSL communication.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--ca-path</span></kbd></td>
+<td>Define the path to a directory containing PEM encoded CA certificates that are trusted. Used to enable SSL communication.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--ca-data</span></kbd></td>
+<td>Set the PEM encoded CA certificates that are trusted. Used to enable SSL communication.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--clean-session</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td>If given, set the CONNECT clean session flag to True.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-f</span></kbd></td>
+<td>Send the contents of a file as the message. The file is read line by line, and <code class="docutils literal notranslate"><span class="pre">hbmqtt_pub</span></code> will publish a message for each line read.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-i</span></kbd></td>
+<td>The id to use for this client. If not given, defaults to <code class="docutils literal notranslate"><span class="pre">hbmqtt_pub/</span></code> appended with the process id and the hostname of the client.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-l</span></kbd></td>
+<td>Send messages read from stdin. <code class="docutils literal notranslate"><span class="pre">hbmqtt_pub</span></code> will publish a message for each line read. Blank lines won’t be sent.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-k</span></kbd></td>
+<td>Set the CONNECT keep alive timeout.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-m</span></kbd></td>
+<td>Send a single message from the command line.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-n</span></kbd></td>
+<td>Send a null (zero length) message.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-q</span>, <span class="option">--qos</span></kbd></td>
+<td>Specify the quality of service to use for the message, from 0, 1 and 2. Defaults to 0.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-s</span></kbd></td>
+<td>Send a message read from stdin, sending the entire content as a single message.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-t</span></kbd></td>
+<td>The MQTT topic on which to publish the message.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--url</span></kbd></td>
+<td>Broker connection URL, conforming to <a class="reference external" href="https://github.com/mqtt/mqtt.github.io/wiki/URI-Scheme">MQTT URL scheme</a>.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--will-topic</span></kbd></td>
+<td>The topic on which to send a Will, in the event that the client disconnects unexpectedly.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--will-message</span></kbd></td>
+<td>Specify a message that will be stored by the broker and sent out if this client disconnects unexpectedly. This must be used in conjunction with <code class="docutils literal notranslate"><span class="pre">--will-topic</span></code>.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--will-qos</span></kbd></td>
+<td>The QoS to use for the Will. Defaults to 0. This must be used in conjunction with <code class="docutils literal notranslate"><span class="pre">--will-topic</span></code>.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--will-retain</span></kbd></td>
+<td>If given, if the client disconnects unexpectedly the message sent out will be treated as a retained message. This must be used in conjunction with <code class="docutils literal notranslate"><span class="pre">--will-topic</span></code>.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--extra-headers</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td>Specify a JSON object string with key-value pairs representing additional headers that are transmitted on the initial connection, but only when using a websocket connection</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>If <code class="docutils literal notranslate"><span class="pre">-c</span></code> argument is given, <code class="docutils literal notranslate"><span class="pre">hbmqtt_pub</span></code> will read specific MQTT settings for the given configuration file. This file must be a valid <a class="reference external" href="http://yaml.org/">YAML</a> file which may contains the following configuration elements :</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">keep_alive</span></code> : Keep-alive timeout sent to the broker. Defaults to <code class="docutils literal notranslate"><span class="pre">10</span></code> seconds.</li>
+<li><code class="docutils literal notranslate"><span class="pre">ping_delay</span></code> : Auto-ping delay before keep-alive timeout. Defaults to 1. Setting to <code class="docutils literal notranslate"><span class="pre">0</span></code> will disable to 0 and may lead to broker disconnection.</li>
+<li><code class="docutils literal notranslate"><span class="pre">default_qos</span></code> : Default QoS for messages published. Defaults to 0.</li>
+<li><code class="docutils literal notranslate"><span class="pre">default_retain</span></code> : Default retain value to messages published. Defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">auto_reconnect</span></code> : Enable or disable auto-reconnect if connectection with the broker is interrupted. Defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">reconnect_retries</span></code> : Maximum reconnection retries. Defaults to <code class="docutils literal notranslate"><span class="pre">2</span></code>. Negative value will cause client to reconnect infinietly.</li>
+<li><code class="docutils literal notranslate"><span class="pre">reconnect_max_interval</span></code> : Maximum interval between 2 connection retry. Defaults to <code class="docutils literal notranslate"><span class="pre">10</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Examples below are adapted from <a class="reference external" href="http://mosquitto.org/man/mosquitto_pub-1.html">mosquitto_pub</a> documentation.</p>
+<p>Publish temperature information to localhost with QoS 1:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hbmqtt_pub</span> <span class="o">--</span><span class="n">url</span> <span class="n">mqtt</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span> <span class="o">-</span><span class="n">t</span> <span class="n">sensors</span><span class="o">/</span><span class="n">temperature</span> <span class="o">-</span><span class="n">m</span> <span class="mi">32</span> <span class="o">-</span><span class="n">q</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Publish timestamp and temperature information to a remote host on a non-standard port and QoS 0:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hbmqtt_pub</span> <span class="o">--</span><span class="n">url</span> <span class="n">mqtt</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">1.1</span><span class="p">:</span><span class="mi">1885</span> <span class="o">-</span><span class="n">t</span> <span class="n">sensors</span><span class="o">/</span><span class="n">temperature</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;1266193804 32&quot;</span>
+</pre></div>
+</div>
+<p>Publish light switch status. Message is set to retained because there may be a long period of time between light switch events:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hbmqtt_pub</span> <span class="o">--</span><span class="n">url</span> <span class="n">mqtt</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span> <span class="o">-</span><span class="n">r</span> <span class="o">-</span><span class="n">t</span> <span class="n">switches</span><span class="o">/</span><span class="n">kitchen_lights</span><span class="o">/</span><span class="n">status</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;on&quot;</span>
+</pre></div>
+</div>
+<p>Send the contents of a file in two ways:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hbmqtt_pub</span> <span class="o">--</span><span class="n">url</span> <span class="n">mqtt</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span> <span class="o">-</span><span class="n">t</span> <span class="n">my</span><span class="o">/</span><span class="n">topic</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">data</span>
+
+<span class="n">hbmqtt_pub</span> <span class="o">--</span><span class="n">url</span> <span class="n">mqtt</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span> <span class="o">-</span><span class="n">t</span> <span class="n">my</span><span class="o">/</span><span class="n">topic</span> <span class="o">-</span><span class="n">s</span> <span class="o">&lt;</span> <span class="o">./</span><span class="n">data</span>
+</pre></div>
+</div>
+<p>Publish temperature information to localhost with QoS 1 over mqtt encapsulated in a websocket connection and additional headers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hbmqtt_pub</span> <span class="o">--</span><span class="n">url</span> <span class="n">wss</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span> <span class="o">-</span><span class="n">t</span> <span class="n">sensors</span><span class="o">/</span><span class="n">temperature</span> <span class="o">-</span><span class="n">m</span> <span class="mi">32</span> <span class="o">-</span><span class="n">q</span> <span class="mi">1</span> <span class="o">--</span><span class="n">extra</span><span class="o">-</span><span class="n">headers</span> <span class="s1">&#39;{&quot;Authorization&quot;: &quot;Bearer &lt;token&gt;&quot;}&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="hbmqtt_sub.html" class="btn btn-neutral float-right" title="hbmqtt_sub" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="References" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2015, Nicolas Jouanin
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//piwik.beerfactory.org/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 6]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//piwik.beerfactory.org/piwik.php?idsite=6" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+
+</body>
+</html>

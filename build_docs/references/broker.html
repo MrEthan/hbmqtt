@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Broker API reference &mdash; HBMQTT 0.6 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Common API" href="common.html" />
+    <link rel="prev" title="MQTTClient API" href="mqttclient.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> HBMQTT
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">References</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#console-scripts">Console scripts</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#programming-api">Programming API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="hbmqtt_pub.html">hbmqtt_pub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hbmqtt_sub.html">hbmqtt_sub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hbmqtt.html">hbmqtt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mqttclient.html">MQTTClient API</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Broker API reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#usage-example">Usage example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="common.html">Common API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">HBMQTT</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">References</a> &raquo;</li>
+        
+      <li>Broker API reference</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/references/broker.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="broker-api-reference">
+<h1>Broker API reference<a class="headerlink" href="#broker-api-reference" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">Broker</span></code> class provides a complete MQTT 3.1.1 broker implementation. This class allows Python developers to embed a MQTT broker in their own applications.</p>
+<div class="section" id="usage-example">
+<h2>Usage example<a class="headerlink" href="#usage-example" title="Permalink to this headline">¶</a></h2>
+<p>The following example shows how to start a broker using the default configuration:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">hbmqtt.broker</span> <span class="kn">import</span> <span class="n">Broker</span>
+
+
+<span class="nd">@asyncio.coroutine</span>
+<span class="k">def</span> <span class="nf">broker_coro</span><span class="p">():</span>
+    <span class="n">broker</span> <span class="o">=</span> <span class="n">Broker</span><span class="p">()</span>
+    <span class="k">yield from</span> <span class="n">broker</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">formatter</span> <span class="o">=</span> <span class="s2">&quot;[</span><span class="si">%(asctime)s</span><span class="s2">] :: </span><span class="si">%(levelname)s</span><span class="s2"> :: </span><span class="si">%(name)s</span><span class="s2"> :: </span><span class="si">%(message)s</span><span class="s2">&quot;</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">formatter</span><span class="p">)</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">broker_coro</span><span class="p">())</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">run_forever</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>When executed, this script gets the default event loop and asks it to run the <code class="docutils literal notranslate"><span class="pre">broker_coro</span></code> until it completes.
+<code class="docutils literal notranslate"><span class="pre">broker_coro</span></code> creates <code class="xref py py-class docutils literal notranslate"><span class="pre">Broker</span></code> instance and then <code class="xref py py-meth docutils literal notranslate"><span class="pre">start()</span></code> the broker for serving.
+Once completed, the loop is ran forever, making this script never stop …</p>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="broker-api">
+<h3>Broker API<a class="headerlink" href="#broker-api" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="broker-configuration">
+<h3>Broker configuration<a class="headerlink" href="#broker-configuration" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">Broker</span></code> <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method accepts a <code class="docutils literal notranslate"><span class="pre">config</span></code> parameter which allow to setup some behaviour and defaults settings. This argument must be a Python dict object. For convinience, it is presented below as a YAML file <a class="footnote-reference" href="#id3" id="id1">[1]</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">listeners</span><span class="p">:</span>
+    <span class="n">default</span><span class="p">:</span>
+        <span class="nb">max</span><span class="o">-</span><span class="n">connections</span><span class="p">:</span> <span class="mi">50000</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">tcp</span>
+    <span class="n">my</span><span class="o">-</span><span class="n">tcp</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">bind</span><span class="p">:</span> <span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">1883</span>
+    <span class="n">my</span><span class="o">-</span><span class="n">tcp</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span>
+        <span class="n">bind</span><span class="p">:</span> <span class="mf">1.2</span><span class="o">.</span><span class="mf">3.4</span><span class="p">:</span><span class="mi">1884</span>
+        <span class="nb">max</span><span class="o">-</span><span class="n">connections</span><span class="p">:</span> <span class="mi">1000</span>
+    <span class="n">my</span><span class="o">-</span><span class="n">tcp</span><span class="o">-</span><span class="n">ssl</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">bind</span><span class="p">:</span> <span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8885</span>
+        <span class="n">ssl</span><span class="p">:</span> <span class="n">on</span>
+        <span class="n">cafile</span><span class="p">:</span> <span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">cafile</span>
+        <span class="n">capath</span><span class="p">:</span> <span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">folder</span>
+        <span class="n">capath</span><span class="p">:</span> <span class="n">certificate</span> <span class="n">data</span>
+        <span class="n">certfile</span><span class="p">:</span> <span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">certfile</span>
+        <span class="n">keyfile</span><span class="p">:</span> <span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">key</span>
+    <span class="n">my</span><span class="o">-</span><span class="n">ws</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">bind</span><span class="p">:</span> <span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span><span class="p">:</span><span class="mi">8080</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">ws</span>
+<span class="n">timeout</span><span class="o">-</span><span class="n">disconnect</span><span class="o">-</span><span class="n">delay</span><span class="p">:</span> <span class="mi">2</span>
+<span class="n">auth</span><span class="p">:</span>
+    <span class="n">plugins</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;auth.anonymous&#39;</span><span class="p">]</span> <span class="c1">#List of plugins to activate for authentication among all registered plugins</span>
+    <span class="n">allow</span><span class="o">-</span><span class="n">anonymous</span><span class="p">:</span> <span class="n">true</span> <span class="o">/</span> <span class="n">false</span>
+    <span class="n">password</span><span class="o">-</span><span class="nb">file</span><span class="p">:</span> <span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">passwd_file</span>
+<span class="n">topic</span><span class="o">-</span><span class="n">check</span><span class="p">:</span>
+    <span class="n">enabled</span><span class="p">:</span> <span class="n">true</span> <span class="o">/</span> <span class="n">false</span>  <span class="c1"># Set to False if topic filtering is not needed</span>
+    <span class="n">plugins</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;topic_acl&#39;</span><span class="p">]</span> <span class="c1">#List of plugins to activate for topic filtering among all registered plugins</span>
+    <span class="n">acl</span><span class="p">:</span>
+        <span class="c1"># username: [list of allowed topics]</span>
+        <span class="n">username1</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;repositories/+/master&#39;</span><span class="p">,</span> <span class="s1">&#39;calendar/#&#39;</span><span class="p">,</span> <span class="s1">&#39;data/memes&#39;</span><span class="p">]</span>  <span class="c1"># List of topics on which client1 can publish and subscribe</span>
+        <span class="n">username2</span><span class="p">:</span> <span class="o">...</span>
+        <span class="n">anonymous</span><span class="p">:</span> <span class="p">[]</span>  <span class="c1"># List of topics on which an anonymous client can publish and subscribe</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">listeners</span></code> section allows to define network listeners which must be started by the <code class="xref py py-class docutils literal notranslate"><span class="pre">Broker</span></code>. Several listeners can be setup. <code class="docutils literal notranslate"><span class="pre">default</span></code> subsection defines common attributes for all listeners. Each listener can have the following settings:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">bind</span></code>: IP address and port binding.</li>
+<li><code class="docutils literal notranslate"><span class="pre">max-connections</span></code>: Set maximum number of active connection for the listener. <code class="docutils literal notranslate"><span class="pre">0</span></code> means no limit.</li>
+<li><code class="docutils literal notranslate"><span class="pre">type</span></code>: transport protocol type; can be <code class="docutils literal notranslate"><span class="pre">tcp</span></code> for classic TCP listener or <code class="docutils literal notranslate"><span class="pre">ws</span></code> for MQTT over websocket.</li>
+<li><code class="docutils literal notranslate"><span class="pre">ssl</span></code> enables (<code class="docutils literal notranslate"><span class="pre">on</span></code>) or disable secured connection over the transport protocol.</li>
+<li><code class="docutils literal notranslate"><span class="pre">cafile</span></code>, <code class="docutils literal notranslate"><span class="pre">cadata</span></code>, <code class="docutils literal notranslate"><span class="pre">certfile</span></code> and <code class="docutils literal notranslate"><span class="pre">keyfile</span></code> : mandatory parameters for SSL secured connections.</li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">auth</span></code> section setup authentication behaviour:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">plugins</span></code>: defines the list of activated plugins. Note the plugins must be defined in the <code class="docutils literal notranslate"><span class="pre">hbmqtt.broker.plugins</span></code> <a class="reference external" href="https://pythonhosted.org/setuptools/setuptools.html#dynamic-discovery-of-services-and-plugins">entry point</a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">allow-anonymous</span></code> : used by the internal <code class="xref py py-class docutils literal notranslate"><span class="pre">hbmqtt.plugins.authentication.AnonymousAuthPlugin</span></code> plugin. This parameter enables (<code class="docutils literal notranslate"><span class="pre">on</span></code>) or disable anonymous connection, ie. connection without username.</li>
+<li><code class="docutils literal notranslate"><span class="pre">password-file</span></code> : used by the internal <code class="xref py py-class docutils literal notranslate"><span class="pre">hbmqtt.plugins.authentication.FileAuthPlugin</span></code> plugin. This parameter gives to path of the password file to load for authenticating users.</li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">topic-check</span></code> section setup access control policies for publishing and subscribing to topics:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">enabled</span></code>: set to true if you want to impose an access control policy. Otherwise, set it to false.</li>
+<li><code class="docutils literal notranslate"><span class="pre">plugins</span></code>: defines the list of activated plugins. Note the plugins must be defined in the <code class="docutils literal notranslate"><span class="pre">hbmqtt.broker.plugins</span></code> <a class="reference external" href="https://pythonhosted.org/setuptools/setuptools.html#dynamic-discovery-of-services-and-plugins">entry point</a>.</li>
+<li><dl class="first docutils">
+<dt>additional parameters: depending on the plugin used for access control, additional parameters should be added.</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>In case of <code class="docutils literal notranslate"><span class="pre">topic_acl</span></code> plugin, the Access Control List (ACL) must be defined in the parameter <code class="docutils literal notranslate"><span class="pre">acl</span></code>.</dt>
+<dd><ul class="first last">
+<li>For each username, a list with the allowed topics must be defined.</li>
+<li>If the client logs in anonymously, the <code class="docutils literal notranslate"><span class="pre">anonymous</span></code> entry within the ACL is used in order to grant/deny subscriptions.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>See <a class="reference external" href="http://pyyaml.org/wiki/PyYAMLDocumentation">PyYAML</a> for loading YAML files as Python dict.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="common.html" class="btn btn-neutral float-right" title="Common API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mqttclient.html" class="btn btn-neutral float-left" title="MQTTClient API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2015, Nicolas Jouanin
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//piwik.beerfactory.org/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 6]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//piwik.beerfactory.org/piwik.php?idsite=6" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+
+</body>
+</html>

@@ -1,0 +1,419 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MQTTClient API &mdash; HBMQTT 0.6 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Broker API reference" href="broker.html" />
+    <link rel="prev" title="hbmqtt" href="hbmqtt.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> HBMQTT
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">References</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#console-scripts">Console scripts</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#programming-api">Programming API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="hbmqtt_pub.html">hbmqtt_pub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hbmqtt_sub.html">hbmqtt_sub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hbmqtt.html">hbmqtt</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MQTTClient API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#usage-examples">Usage examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="broker.html">Broker API reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html">Common API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">HBMQTT</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">References</a> &raquo;</li>
+        
+      <li>MQTTClient API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/references/mqttclient.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mqttclient-api">
+<h1>MQTTClient API<a class="headerlink" href="#mqttclient-api" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">MQTTClient</span></code> class implements the client part of MQTT protocol. It can be used to publish and/or subscribe MQTT message on a broker accessible on the network through TCP or websocket protocol, both secured or unsecured.</p>
+<div class="section" id="usage-examples">
+<h2>Usage examples<a class="headerlink" href="#usage-examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="subscriber">
+<h3>Subscriber<a class="headerlink" href="#subscriber" title="Permalink to this headline">¶</a></h3>
+<p>The example below shows how to write a simple MQTT client which subscribes a topic and prints every messages received from the broker :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+
+<span class="kn">from</span> <span class="nn">hbmqtt.client</span> <span class="kn">import</span> <span class="n">MQTTClient</span><span class="p">,</span> <span class="n">ClientException</span>
+<span class="kn">from</span> <span class="nn">hbmqtt.mqtt.constants</span> <span class="kn">import</span> <span class="n">QOS_1</span><span class="p">,</span> <span class="n">QOS_2</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@asyncio.coroutine</span>
+<span class="k">def</span> <span class="nf">uptime_coro</span><span class="p">():</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">MQTTClient</span><span class="p">()</span>
+    <span class="k">yield from</span> <span class="n">C</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;mqtt://test.mosquitto.org/&#39;</span><span class="p">)</span>
+    <span class="c1"># Subscribe to &#39;$SYS/broker/uptime&#39; with QOS=1</span>
+    <span class="c1"># Subscribe to &#39;$SYS/broker/load/#&#39; with QOS=2</span>
+    <span class="k">yield from</span> <span class="n">C</span><span class="o">.</span><span class="n">subscribe</span><span class="p">([</span>
+            <span class="p">(</span><span class="s1">&#39;$SYS/broker/uptime&#39;</span><span class="p">,</span> <span class="n">QOS_1</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;$SYS/broker/load/#&#39;</span><span class="p">,</span> <span class="n">QOS_2</span><span class="p">),</span>
+         <span class="p">])</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="k">yield from</span> <span class="n">C</span><span class="o">.</span><span class="n">deliver_message</span><span class="p">()</span>
+            <span class="n">packet</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">publish_packet</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">:  </span><span class="si">%s</span><span class="s2"> =&gt; </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">packet</span><span class="o">.</span><span class="n">variable_header</span><span class="o">.</span><span class="n">topic_name</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">packet</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">data</span><span class="p">)))</span>
+        <span class="k">yield from</span> <span class="n">C</span><span class="o">.</span><span class="n">unsubscribe</span><span class="p">([</span><span class="s1">&#39;$SYS/broker/uptime&#39;</span><span class="p">,</span> <span class="s1">&#39;$SYS/broker/load/#&#39;</span><span class="p">])</span>
+        <span class="k">yield from</span> <span class="n">C</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">ClientException</span> <span class="k">as</span> <span class="n">ce</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Client exception: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">ce</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">formatter</span> <span class="o">=</span> <span class="s2">&quot;[</span><span class="si">%(asctime)s</span><span class="s2">] </span><span class="si">%(name)s</span><span class="s2"> {</span><span class="si">%(filename)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">} </span><span class="si">%(levelname)s</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">&quot;</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">formatter</span><span class="p">)</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">uptime_coro</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>When executed, this script gets the default event loop and asks it to run the <code class="docutils literal notranslate"><span class="pre">uptime_coro</span></code> until it completes.
+<code class="docutils literal notranslate"><span class="pre">uptime_coro</span></code> starts by initializing a <code class="xref py py-class docutils literal notranslate"><span class="pre">MQTTClient</span></code> instance.
+The coroutine then call <code class="xref py py-meth docutils literal notranslate"><span class="pre">connect()</span></code> to connect to the broker, here <code class="docutils literal notranslate"><span class="pre">test.mosquitto.org</span></code>.
+Once connected, the coroutine subscribes to some topics, and then wait for 100 messages. Each message received is simply written to output.
+Finally, the coroutine unsubscribes from topics and disconnects from the broker.</p>
+</div>
+<div class="section" id="publisher">
+<h3>Publisher<a class="headerlink" href="#publisher" title="Permalink to this headline">¶</a></h3>
+<p>The example below uses the <code class="xref py py-class docutils literal notranslate"><span class="pre">MQTTClient</span></code> class to implement a publisher.
+This test publish 3 messages asynchronously to the broker on a test topic.
+For the purposes of the test, each message is published with a different Quality Of Service.
+This example also shows to method for publishing message asynchronously.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+
+<span class="kn">from</span> <span class="nn">hbmqtt.client</span> <span class="kn">import</span> <span class="n">MQTTClient</span>
+<span class="kn">from</span> <span class="nn">hbmqtt.mqtt.constants</span> <span class="kn">import</span> <span class="n">QOS_0</span><span class="p">,</span> <span class="n">QOS_1</span><span class="p">,</span> <span class="n">QOS_2</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@asyncio.coroutine</span>
+<span class="k">def</span> <span class="nf">test_coro</span><span class="p">():</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">MQTTClient</span><span class="p">()</span>
+    <span class="k">yield from</span> <span class="n">C</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;mqtt://test.mosquitto.org/&#39;</span><span class="p">)</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">asyncio</span><span class="o">.</span><span class="n">ensure_future</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s1">&#39;a/b&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;TEST MESSAGE WITH QOS_0&#39;</span><span class="p">)),</span>
+        <span class="n">asyncio</span><span class="o">.</span><span class="n">ensure_future</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s1">&#39;a/b&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;TEST MESSAGE WITH QOS_1&#39;</span><span class="p">,</span> <span class="n">qos</span><span class="o">=</span><span class="n">QOS_1</span><span class="p">)),</span>
+        <span class="n">asyncio</span><span class="o">.</span><span class="n">ensure_future</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s1">&#39;a/b&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;TEST MESSAGE WITH QOS_2&#39;</span><span class="p">,</span> <span class="n">qos</span><span class="o">=</span><span class="n">QOS_2</span><span class="p">)),</span>
+    <span class="p">]</span>
+    <span class="k">yield from</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;messages published&quot;</span><span class="p">)</span>
+    <span class="k">yield from</span> <span class="n">C</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+
+
+<span class="nd">@asyncio.coroutine</span>
+<span class="k">def</span> <span class="nf">test_coro2</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="n">MQTTClient</span><span class="p">()</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="k">yield from</span> <span class="n">C</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;mqtt://test.mosquitto.org:1883/&#39;</span><span class="p">)</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="k">yield from</span> <span class="n">C</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s1">&#39;a/b&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;TEST MESSAGE WITH QOS_0&#39;</span><span class="p">,</span> <span class="n">qos</span><span class="o">=</span><span class="n">QOS_0</span><span class="p">)</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="k">yield from</span> <span class="n">C</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s1">&#39;a/b&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;TEST MESSAGE WITH QOS_1&#39;</span><span class="p">,</span> <span class="n">qos</span><span class="o">=</span><span class="n">QOS_1</span><span class="p">)</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="k">yield from</span> <span class="n">C</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s1">&#39;a/b&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;TEST MESSAGE WITH QOS_2&#39;</span><span class="p">,</span> <span class="n">qos</span><span class="o">=</span><span class="n">QOS_2</span><span class="p">)</span>
+        <span class="c1">#print(message)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;messages published&quot;</span><span class="p">)</span>
+        <span class="k">yield from</span> <span class="n">C</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">ConnectException</span> <span class="k">as</span> <span class="n">ce</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Connection failed: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">ce</span><span class="p">)</span>
+        <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">formatter</span> <span class="o">=</span> <span class="s2">&quot;[</span><span class="si">%(asctime)s</span><span class="s2">] </span><span class="si">%(name)s</span><span class="s2"> {</span><span class="si">%(filename)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">} </span><span class="si">%(levelname)s</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">&quot;</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">formatter</span><span class="p">)</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">test_coro</span><span class="p">())</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">test_coro2</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>As usual, the script runs the publish code through the async loop. <code class="docutils literal notranslate"><span class="pre">test_coro()</span></code> and <code class="docutils literal notranslate"><span class="pre">test_coro()</span></code> are ran in sequence.
+Both do the same job. <code class="docutils literal notranslate"><span class="pre">test_coro()</span></code> publish 3 messages in sequence. <code class="docutils literal notranslate"><span class="pre">test_coro2()</span></code> publishes the same message asynchronously.
+The difference appears the looking at the sequence of MQTT messages sent.</p>
+<p><code class="docutils literal notranslate"><span class="pre">test_coro()</span></code> achieves:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>hbmqtt/YDYY;NNRpYQSy3?o -out-&gt; PublishPacket(ts=2015-11-11 21:54:48.843901, fixed=MQTTFixedHeader(length=28, flags=0x0), variable=PublishVariableHeader(topic=a/b, packet_id=None), payload=PublishPayload(data=&quot;b&#39;TEST MESSAGE WITH QOS_0&#39;&quot;))
+hbmqtt/YDYY;NNRpYQSy3?o -out-&gt; PublishPacket(ts=2015-11-11 21:54:48.844152, fixed=MQTTFixedHeader(length=30, flags=0x2), variable=PublishVariableHeader(topic=a/b, packet_id=1), payload=PublishPayload(data=&quot;b&#39;TEST MESSAGE WITH QOS_1&#39;&quot;))
+hbmqtt/YDYY;NNRpYQSy3?o &lt;-in-- PubackPacket(ts=2015-11-11 21:54:48.979665, fixed=MQTTFixedHeader(length=2, flags=0x0), variable=PacketIdVariableHeader(packet_id=1), payload=None)
+hbmqtt/YDYY;NNRpYQSy3?o -out-&gt; PublishPacket(ts=2015-11-11 21:54:48.980886, fixed=MQTTFixedHeader(length=30, flags=0x4), variable=PublishVariableHeader(topic=a/b, packet_id=2), payload=PublishPayload(data=&quot;b&#39;TEST MESSAGE WITH QOS_2&#39;&quot;))
+hbmqtt/YDYY;NNRpYQSy3?o &lt;-in-- PubrecPacket(ts=2015-11-11 21:54:49.029691, fixed=MQTTFixedHeader(length=2, flags=0x0), variable=PacketIdVariableHeader(packet_id=2), payload=None)
+hbmqtt/YDYY;NNRpYQSy3?o -out-&gt; PubrelPacket(ts=2015-11-11 21:54:49.030823, fixed=MQTTFixedHeader(length=2, flags=0x2), variable=PacketIdVariableHeader(packet_id=2), payload=None)
+hbmqtt/YDYY;NNRpYQSy3?o &lt;-in-- PubcompPacket(ts=2015-11-11 21:54:49.092514, fixed=MQTTFixedHeader(length=2, flags=0x0), variable=PacketIdVariableHeader(packet_id=2), payload=None)fixed=MQTTFixedHeader(length=2, flags=0x0), variable=PacketIdVariableHeader(packet_id=2), payload=None)
+</pre></div>
+</div>
+<p>while <code class="docutils literal notranslate"><span class="pre">test_coro2()</span></code> runs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hbmqtt</span><span class="o">/</span><span class="n">LYRf52W</span><span class="p">[</span><span class="mi">56</span><span class="n">SOjW04</span> <span class="o">-</span><span class="n">out</span><span class="o">-&gt;</span> <span class="n">PublishPacket</span><span class="p">(</span><span class="n">ts</span><span class="o">=</span><span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">11</span> <span class="mi">21</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mf">48.466123</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="n">MQTTFixedHeader</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">28</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mh">0x0</span><span class="p">),</span> <span class="n">variable</span><span class="o">=</span><span class="n">PublishVariableHeader</span><span class="p">(</span><span class="n">topic</span><span class="o">=</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">,</span> <span class="n">packet_id</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span> <span class="n">payload</span><span class="o">=</span><span class="n">PublishPayload</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s2">&quot;b&#39;TEST MESSAGE WITH QOS_0&#39;&quot;</span><span class="p">))</span>
+<span class="n">hbmqtt</span><span class="o">/</span><span class="n">LYRf52W</span><span class="p">[</span><span class="mi">56</span><span class="n">SOjW04</span> <span class="o">-</span><span class="n">out</span><span class="o">-&gt;</span> <span class="n">PublishPacket</span><span class="p">(</span><span class="n">ts</span><span class="o">=</span><span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">11</span> <span class="mi">21</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mf">48.466432</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="n">MQTTFixedHeader</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mh">0x2</span><span class="p">),</span> <span class="n">variable</span><span class="o">=</span><span class="n">PublishVariableHeader</span><span class="p">(</span><span class="n">topic</span><span class="o">=</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">,</span> <span class="n">packet_id</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">payload</span><span class="o">=</span><span class="n">PublishPayload</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s2">&quot;b&#39;TEST MESSAGE WITH QOS_1&#39;&quot;</span><span class="p">))</span>
+<span class="n">hbmqtt</span><span class="o">/</span><span class="n">LYRf52W</span><span class="p">[</span><span class="mi">56</span><span class="n">SOjW04</span> <span class="o">-</span><span class="n">out</span><span class="o">-&gt;</span> <span class="n">PublishPacket</span><span class="p">(</span><span class="n">ts</span><span class="o">=</span><span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">11</span> <span class="mi">21</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mf">48.466695</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="n">MQTTFixedHeader</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mh">0x4</span><span class="p">),</span> <span class="n">variable</span><span class="o">=</span><span class="n">PublishVariableHeader</span><span class="p">(</span><span class="n">topic</span><span class="o">=</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">,</span> <span class="n">packet_id</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">payload</span><span class="o">=</span><span class="n">PublishPayload</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s2">&quot;b&#39;TEST MESSAGE WITH QOS_2&#39;&quot;</span><span class="p">))</span>
+<span class="n">hbmqtt</span><span class="o">/</span><span class="n">LYRf52W</span><span class="p">[</span><span class="mi">56</span><span class="n">SOjW04</span> <span class="o">&lt;-</span><span class="ow">in</span><span class="o">--</span> <span class="n">PubackPacket</span><span class="p">(</span><span class="n">ts</span><span class="o">=</span><span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">11</span> <span class="mi">21</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mf">48.613062</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="n">MQTTFixedHeader</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mh">0x0</span><span class="p">),</span> <span class="n">variable</span><span class="o">=</span><span class="n">PacketIdVariableHeader</span><span class="p">(</span><span class="n">packet_id</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">payload</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">hbmqtt</span><span class="o">/</span><span class="n">LYRf52W</span><span class="p">[</span><span class="mi">56</span><span class="n">SOjW04</span> <span class="o">&lt;-</span><span class="ow">in</span><span class="o">--</span> <span class="n">PubrecPacket</span><span class="p">(</span><span class="n">ts</span><span class="o">=</span><span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">11</span> <span class="mi">21</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mf">48.661073</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="n">MQTTFixedHeader</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mh">0x0</span><span class="p">),</span> <span class="n">variable</span><span class="o">=</span><span class="n">PacketIdVariableHeader</span><span class="p">(</span><span class="n">packet_id</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">payload</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">hbmqtt</span><span class="o">/</span><span class="n">LYRf52W</span><span class="p">[</span><span class="mi">56</span><span class="n">SOjW04</span> <span class="o">-</span><span class="n">out</span><span class="o">-&gt;</span> <span class="n">PubrelPacket</span><span class="p">(</span><span class="n">ts</span><span class="o">=</span><span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">11</span> <span class="mi">21</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mf">48.661925</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="n">MQTTFixedHeader</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mh">0x2</span><span class="p">),</span> <span class="n">variable</span><span class="o">=</span><span class="n">PacketIdVariableHeader</span><span class="p">(</span><span class="n">packet_id</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">payload</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">hbmqtt</span><span class="o">/</span><span class="n">LYRf52W</span><span class="p">[</span><span class="mi">56</span><span class="n">SOjW04</span> <span class="o">&lt;-</span><span class="ow">in</span><span class="o">--</span> <span class="n">PubcompPacket</span><span class="p">(</span><span class="n">ts</span><span class="o">=</span><span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">11</span> <span class="mi">21</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mf">48.713107</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="n">MQTTFixedHeader</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mh">0x0</span><span class="p">),</span> <span class="n">variable</span><span class="o">=</span><span class="n">PacketIdVariableHeader</span><span class="p">(</span><span class="n">packet_id</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">payload</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Both coroutines have the same results except that <code class="docutils literal notranslate"><span class="pre">test_coro2()</span></code> manages messages flow in parallel which may be more efficient.</p>
+</div>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>MQTTClient API<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="mqttclient-configuration">
+<h3>MQTTClient configuration<a class="headerlink" href="#mqttclient-configuration" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">MQTTClient</span></code> <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method accepts a <code class="docutils literal notranslate"><span class="pre">config</span></code> parameter which allow to setup some behaviour and defaults settings. This argument must be a Python dict object which may contain the following entries:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">keep_alive</span></code>: keep alive (in seconds) to send when connecting to the broker (defaults to <code class="docutils literal notranslate"><span class="pre">10</span></code> seconds). <code class="xref py py-class docutils literal notranslate"><span class="pre">MQTTClient</span></code> will <em>auto-ping</em> the broker if not message is sent within the keep-alive interval. This avoids disconnection from the broker.</li>
+<li><code class="docutils literal notranslate"><span class="pre">ping_delay</span></code>: <em>auto-ping</em> delay before keep-alive times out (defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code> seconds).</li>
+<li><code class="docutils literal notranslate"><span class="pre">default_qos</span></code>: Default QoS (<code class="docutils literal notranslate"><span class="pre">0</span></code>) used by <code class="xref py py-meth docutils literal notranslate"><span class="pre">publish()</span></code> if <code class="docutils literal notranslate"><span class="pre">qos</span></code> argument is not given.</li>
+<li><code class="docutils literal notranslate"><span class="pre">default_retain</span></code>: Default retain (<code class="docutils literal notranslate"><span class="pre">False</span></code>) used by <code class="xref py py-meth docutils literal notranslate"><span class="pre">publish()</span></code> if <code class="docutils literal notranslate"><span class="pre">qos</span></code> argument is not given.,</li>
+<li><code class="docutils literal notranslate"><span class="pre">auto_reconnect</span></code>: enable or disable auto-reconnect feature (defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>).</li>
+<li><code class="docutils literal notranslate"><span class="pre">reconnect_max_interval</span></code>: maximum interval (in seconds) to wait before two connection retries (defaults to <code class="docutils literal notranslate"><span class="pre">10</span></code>).</li>
+<li><code class="docutils literal notranslate"><span class="pre">reconnect_retries</span></code>: maximum number of connect retries (defaults to <code class="docutils literal notranslate"><span class="pre">2</span></code>). Negative value will cause client to reconnect infinietly.</li>
+</ul>
+<p>Default QoS and default retain can also be overriden by adding a <code class="docutils literal notranslate"><span class="pre">topics</span></code> with may contain QoS and retain values for specific topics. See the following example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;keep_alive&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s1">&#39;ping_delay&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;default_qos&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;default_retain&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+    <span class="s1">&#39;auto_reconnect&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+    <span class="s1">&#39;reconnect_max_interval&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s1">&#39;reconnect_retries&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s1">&#39;topics&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;/test&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;qos&#39;</span><span class="p">:</span> <span class="mi">1</span> <span class="p">},</span>
+        <span class="s1">&#39;/some_topic&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;qos&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;retain&#39;</span><span class="p">:</span> <span class="bp">True</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>With this setting any message published will set with QOS_0 and retain flag unset except for :</p>
+<ul class="simple">
+<li>messages sent to <code class="docutils literal notranslate"><span class="pre">/test</span></code> topic : they will be sent with QOS_1</li>
+<li>messages sent to <code class="docutils literal notranslate"><span class="pre">/some_topic</span></code> topic : they will be sent with QOS_2 and retain flag set</li>
+</ul>
+<p>In any case, the <code class="docutils literal notranslate"><span class="pre">qos</span></code> and <code class="docutils literal notranslate"><span class="pre">retain</span></code> argument values passed to method <code class="xref py py-meth docutils literal notranslate"><span class="pre">publish()</span></code> will override these settings.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="broker.html" class="btn btn-neutral float-right" title="Broker API reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="hbmqtt.html" class="btn btn-neutral float-left" title="hbmqtt" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2015, Nicolas Jouanin
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//piwik.beerfactory.org/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 6]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//piwik.beerfactory.org/piwik.php?idsite=6" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+
+</body>
+</html>

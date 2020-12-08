@@ -1,0 +1,310 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quickstart &mdash; HBMQTT 0.6 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Changelog" href="changelog.html" />
+    <link rel="prev" title="HBMQTT" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> HBMQTT
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#publishing-messages">Publishing messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#subscribing-a-topic">Subscribing a topic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-scheme">URL Scheme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-a-broker">Running a broker</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references/index.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HBMQTT</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Quickstart</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/quickstart.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+<p>A quick way for getting started with <code class="docutils literal notranslate"><span class="pre">HBMQTT</span></code> is to use console scripts provided for :</p>
+<ul class="simple">
+<li>publishing a message on some topic on an external MQTT broker.</li>
+<li>subscribing some topics and getting published messages.</li>
+<li>running a autonomous MQTT broker</li>
+</ul>
+<p>These scripts are installed automatically when installing <code class="docutils literal notranslate"><span class="pre">HBMQTT</span></code> with the following command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(venv) $ pip install hbmqtt
+</pre></div>
+</div>
+<div class="section" id="publishing-messages">
+<h2>Publishing messages<a class="headerlink" href="#publishing-messages" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">hbmqtt_pub</span></code> is a command-line tool which can be used for publishing some messages on a topic. It requires a few arguments like broker URL, topic name, QoS and data to send. Additional options allow more complex use case.</p>
+<p>Publishing <code class="docutils literal notranslate"><span class="pre">`some_data</span></code> to as <code class="docutils literal notranslate"><span class="pre">/test</span></code> topic on is as simple as :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ hbmqtt_pub --url mqtt://test.mosquitto.org -t /test -m some_data
+[2015-11-06 22:21:55,108] :: INFO - hbmqtt_pub/5135-MacBook-Pro.local Connecting to broker
+[2015-11-06 22:21:55,333] :: INFO - hbmqtt_pub/5135-MacBook-Pro.local Publishing to &#39;/test&#39;
+[2015-11-06 22:21:55,336] :: INFO - hbmqtt_pub/5135-MacBook-Pro.local Disconnected from broker
+</pre></div>
+</div>
+<p>This will use insecure TCP connection to connect to test.mosquitto.org. <code class="docutils literal notranslate"><span class="pre">hbmqtt_pub</span></code> also allows websockets and secure connection:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ hbmqtt_pub --url ws://test.mosquitto.org:8080 -t /test -m some_data
+[2015-11-06 22:22:42,542] :: INFO - hbmqtt_pub/5157-MacBook-Pro.local Connecting to broker
+[2015-11-06 22:22:42,924] :: INFO - hbmqtt_pub/5157-MacBook-Pro.local Publishing to &#39;/test&#39;
+[2015-11-06 22:22:52,926] :: INFO - hbmqtt_pub/5157-MacBook-Pro.local Disconnected from broker
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">hbmqtt_pub</span></code> can read from file or stdin and use data read as message payload:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ some_command | hbmqtt_pub --url mqtt://localhost -t /test -l
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="references/hbmqtt_pub.html"><span class="doc">hbmqtt_pub</span></a> reference documentation for details about available options and settings.</p>
+</div>
+<div class="section" id="subscribing-a-topic">
+<h2>Subscribing a topic<a class="headerlink" href="#subscribing-a-topic" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">hbmqtt_sub</span></code> is a command-line tool which can be used to subscribe for some pattern(s) on a broker and get date from messages published on topics matching these patterns by other MQTT clients.</p>
+<p>Subscribing a <code class="docutils literal notranslate"><span class="pre">/test/#</span></code> topic pattern is done with :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ hbmqtt_sub --url mqtt://localhost -t /test/#
+</pre></div>
+</div>
+<p>This command will run forever and print on the standard output every messages received from the broker. The <code class="docutils literal notranslate"><span class="pre">-n</span></code> option allows to set a maximum number of messages to receive before stopping.</p>
+<p>See <a class="reference internal" href="references/hbmqtt_sub.html"><span class="doc">hbmqtt_sub</span></a> reference documentation for details about available options and settings.</p>
+</div>
+<div class="section" id="url-scheme">
+<h2>URL Scheme<a class="headerlink" href="#url-scheme" title="Permalink to this headline">¶</a></h2>
+<p>HBMQTT command line tools use the <code class="docutils literal notranslate"><span class="pre">--url</span></code> to establish a network connection with the broker. The <code class="docutils literal notranslate"><span class="pre">--url</span></code> parameter value must conform to the <a class="reference external" href="https://github.com/mqtt/mqtt.github.io/wiki/URI-Scheme">MQTT URL scheme</a>. The general accepted form is :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">mqtt</span><span class="o">|</span><span class="n">ws</span><span class="p">][</span><span class="n">s</span><span class="p">]:</span><span class="o">//</span><span class="p">[</span><span class="n">username</span><span class="p">][:</span><span class="n">password</span><span class="p">]</span><span class="nd">@host</span><span class="o">.</span><span class="n">domain</span><span class="p">[:</span><span class="n">port</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Here are some examples of URL:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mqtt</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span>
+<span class="n">mqtt</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">1884</span>
+<span class="n">mqtt</span><span class="p">:</span><span class="o">//</span><span class="n">user</span><span class="p">:</span><span class="n">password</span><span class="nd">@localhost</span>
+<span class="n">ws</span><span class="p">:</span><span class="o">//</span><span class="n">test</span><span class="o">.</span><span class="n">mosquitto</span><span class="o">.</span><span class="n">org</span>
+<span class="n">wss</span><span class="p">:</span><span class="o">//</span><span class="n">user</span><span class="p">:</span><span class="n">password</span><span class="nd">@localhost</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-a-broker">
+<h2>Running a broker<a class="headerlink" href="#running-a-broker" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">hbmqtt</span></code> is a command-line tool for running a MQTT broker:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ hbmqtt
+[2015-11-06 22:45:16,470] :: INFO - Listener &#39;default&#39; bind to 0.0.0.0:1883 (max_connections=-1)
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="references/hbmqtt.html"><span class="doc">hbmqtt</span></a> reference documentation for details about available options and settings.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="HBMQTT" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2015, Nicolas Jouanin
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//piwik.beerfactory.org/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 6]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//piwik.beerfactory.org/piwik.php?idsite=6" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+
+</body>
+</html>
